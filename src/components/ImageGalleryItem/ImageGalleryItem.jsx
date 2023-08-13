@@ -15,15 +15,15 @@ class ImageGalleryItem extends Component {
     showModal: false,
   };
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
-  };
+  // toggleModal = () => {
+  //   this.setState(({ showModal }) => ({
+  //     showModal: !showModal,
+  //   }));
+  // };
 
   render() {
     const { image } = this.props;
-    const { showModal } = this.state;
+    // const { showModal } = this.state;
 
     return (
       <>
