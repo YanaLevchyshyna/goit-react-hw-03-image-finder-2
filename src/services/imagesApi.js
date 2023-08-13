@@ -1,4 +1,4 @@
-function fetchImages(searchQuery, page = 1) {
+function fetchImages(searchQuery, page) {
   const apiKey = '38697614-c6fc80f9d9f8868a9a5571c50';
 
   // Константа яка визначає кількість зображень на одній сторінці

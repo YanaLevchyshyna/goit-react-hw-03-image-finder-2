@@ -24,56 +24,53 @@ class ImageGallery extends Component {
     const { currentPage } = this.state;
     const prevQuery = prevProps.searchQuery;
     const nextQuery = this.props.searchQuery;
-    // const newPage = currentPage + 1;
 
     if (prevQuery !== nextQuery || prevState.currentPage !== currentPage) {
       console.log('searchQuery changed');
       console.log('currentPage changed');
       this.setState({ status: 'pending' });
     }
-    this.fetchImagesAndUpdateState(nextQuery, currentPage);
-
-    // ощищаємо помилку перед запитом
-    // if (this.state.error) {
-    //   this.setState({ error: null });
-    // }
-  }
-
-  fetchImagesAndUpdateState(nextQuery, currentPage) {
+    if (this.state.error) {
+      this.setState({ error: null });
+    }
     imagesApi
       .fetchImages(nextQuery, currentPage)
       .then(({ hits, totalHits }) => {
         console.log('------>', hits);
+
+        this.setState(prevState => ({
+          images: currentPage === 1 ? hits : [...prevState.images, ...hits],
+          status: 'resolved',
+          totalPages: Math.floor(totalHits / 12),
+        }));
         if (hits.length === 0) {
           throw new Error(
             `Sorry, there are no images ${nextQuery} matching your search query. Please try again.`
           );
         }
-        this.setState(prevState => ({
-          images: [...prevState.images, ...hits],
-          status: 'resolved',
-          totalPages: Math.floor(totalHits / 12),
-        }));
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
   }
 
-  // imagesApi
-  //   .fetchImages(nextQuery, currentPage)
-  //   .then(({ hits, totalHits }) => {
-  //     console.log('------>', hits);
-  //     if (hits.length === 0) {
-  //       throw new Error(
-  //         `Sorry, there are no images ${nextQuery} matching your search query. Please try again.`
-  //       );
-  //     }
-  //     this.setState(prevState => ({
-  //       images: currentPage === 1 ? hits : [...prevState.images, ...hits],
-  //       status: 'resolved',
-  //       totalPages: Math.floor(totalHits / 12),
-  //     }));
-  //   })
-  //   .catch(error => this.setState({ error, status: 'rejected' }));
+  // fetchImagesAndUpdateState(nextQuery, currentPage) {
+  //   imagesApi
+  //     .fetchImages(nextQuery, currentPage)
+  //     .then(({ hits, totalHits }) => {
+  //       console.log('------>', hits);
+
+  //       if (hits.length === 0) {
+  //         throw new Error(
+  //           `Sorry, there are no images ${nextQuery} matching your search query. Please try again.`
+  //         );
+  //       }
+  //       this.setState(prevState => ({
+  //         images: [...prevState.images, ...hits],
+  //         status: 'resolved',
+  //         totalPages: Math.floor(totalHits / 12),
+  //       }));
+  //     })
+  //     .catch(error => this.setState({ error, status: 'rejected' }));
+  // }
 
   onLoadMoreClick = () => {
     this.setState(prevState => ({
@@ -99,17 +96,20 @@ class ImageGallery extends Component {
     if (status === 'rejected') {
       return <ImageGalleryError message={error.message} />;
     }
+    if (images.length === 0) {
+      return (
+        <ImageGalleryError
+          message={`Sorry, there are no images matching your search query. Please try again.`}
+        />
+      );
+    }
 
     if (status === 'resolved') {
       return (
         <>
           <ul>
             {images.map(image => (
-              <ImageGalleryItem
-                key={image.id}
-                image={image}
-                onClick={this.onLoadMoreClick}
-              />
+              <ImageGalleryItem key={image.id} image={image} />
             ))}
           </ul>
           {currentPage <= totalPages &&
