@@ -1,4 +1,14 @@
 import PropTypes from 'prop-types';
+import Modal from '../Modal/Modal';
+// import Dialog from '@mui/material/Dialog';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
+// import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+// import Fab from '@mui/material/Fab';
+// import CancelIcon from '@mui/icons-material/Cancel';
+// import IconButton from '@mui/material/IconButton';
 
 import { Component } from 'react';
 
@@ -12,32 +22,47 @@ class ImageGalleryItem extends Component {
   };
 
   state = {
-    showModal: false,
+    open: false,
+    currentImg: '',
   };
 
-  // toggleModal = () => {
-  //   this.setState(({ showModal }) => ({
-  //     showModal: !showModal,
-  //   }));
-  // };
+  handleOpen = img => {
+    this.setState({ open: true, currentImg: img });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  toggleModal = () => {
+    this.setState(({ open }) => ({
+      open: !open,
+    }));
+  };
 
   render() {
     const { image } = this.props;
-    // const { showModal } = this.state;
+    const { open } = this.state;
 
     return (
       <>
         <li>
-          <a href={image.largeImageURL}>
-            <div>
-              <img
-                src={image.webformatURL}
-                alt={image.tags}
-                data-source={image.largeImageURL}
+          <div>
+            <img
+              src={image.webformatURL}
+              alt={image.tags}
+              onClick={this.toggleModal}
+            />
+            {open && (
+              <Modal
+                largeImageURL={image.largeImageURL}
+                tags={image.tags}
+                onClose={this.toggleModal}
               />
-            </div>
-          </a>
+            )}
+          </div>
         </li>
+        <div></div>
       </>
     );
   }
