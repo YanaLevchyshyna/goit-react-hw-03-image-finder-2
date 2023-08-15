@@ -20,6 +20,7 @@ class ImageGallery extends Component {
   };
 
   state = {
+    searchQuery: '',
     images: [],
     error: null,
     status: 'idle',
@@ -27,6 +28,18 @@ class ImageGallery extends Component {
     isActive: true,
     totalPages: 0, // Зберігає загальну кількість сторінок
   };
+
+  // перевірка чи змінюється новий searchQuery у пропсах
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // console.log('prev-->', prevState.searchQuery);
+    // console.log('next==>', nextProps.searchQuery);
+
+    if (prevState.searchQuery !== nextProps.searchQuery) {
+      return { currentPage: 1, searchQuery: nextProps.searchQuery };
+    }
+    return null;
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const { currentPage } = this.state;
