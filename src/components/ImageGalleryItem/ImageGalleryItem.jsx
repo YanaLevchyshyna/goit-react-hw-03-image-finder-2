@@ -1,14 +1,6 @@
 import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
-// import Dialog from '@mui/material/Dialog';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
-// import Fab from '@mui/material/Fab';
-// import CancelIcon from '@mui/icons-material/Cancel';
-// import IconButton from '@mui/material/IconButton';
+import { ImgItem, PhotoCard } from './ImageGalleryItem.styled';
 
 import { Component } from 'react';
 
@@ -46,8 +38,8 @@ class ImageGalleryItem extends Component {
 
     return (
       <>
-        <li>
-          <div>
+        <ImgItem>
+          <PhotoCard>
             <img
               src={image.webformatURL}
               alt={image.tags}
@@ -60,9 +52,8 @@ class ImageGalleryItem extends Component {
                 onClose={this.toggleModal}
               />
             )}
-          </div>
-        </li>
-        <div></div>
+          </PhotoCard>
+        </ImgItem>
       </>
     );
   }

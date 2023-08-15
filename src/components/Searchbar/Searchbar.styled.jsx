@@ -1,17 +1,22 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.header`
-  margin: 20px auto 20px auto;
-
-  padding: ${p => p.theme.space[5]}px;
-
-  background-color: ${p => p.theme.colors.secondary};
-  border: ${p => p.theme.borders.normal};
-  border-radius: ${p => p.theme.radius.normal};
-
   display: flex;
+  text-align: center;
   justify-content: center;
-  width: 790px;
+
+  background-image: repeating-linear-gradient(
+    to right,
+    #f59fef,
+    #f59fef 20px,
+    #e52e71 20px,
+    #e52e71 40px
+  );
+
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export const FormEl = styled.form`
@@ -23,14 +28,11 @@ export const FormEl = styled.form`
 
 export const InputName = styled.input`
   display: block;
-  width: 600px;
+  width: 400px;
   font-size: 13px;
-  padding: 6px 0 4px 10px;
-  background-color: ${p => p.theme.colors.primary};
-  border: ${p => p.theme.borders.normal};
+
   border-radius: ${p => p.theme.radius.normal};
-  box-shadow: 0px 0.8px 2px rgba(0, 0, 0, 0.032),
-    0px 2.7px 6.7px rgba(0, 0, 0, 0.048), 0px 12px 30px rgba(0, 0, 0, 0.08);
+  border: none;
 
   ::placeholder {
     color: ${p => p.theme.colors.placeHolder};
@@ -38,31 +40,31 @@ export const InputName = styled.input`
   }
 
   :focus {
-    color: #212529;
+    color: #212529
     background-color: #fff;
-    border-color: #bdbdbd;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+   
+    outline-color: #f5aef0;
+    box-shadow: 0 0 0 0.2rem rgba(245, 174, 240, 0.25);
   }
 `;
 
 export const Button = styled.button`
   display: block;
   margin-left: 15px;
-  width: 120px;
+  width: 100px;
+  letter-spacing: 0.08em;
   font-size: 13px;
+  font-weight: 500;
   padding: 6px 12px;
+
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radius.normal};
-  background-color: ${p => p.theme.colors.button};
-  color: ${p => p.theme.colors.label};
+  background-color: ${p => p.theme.colors.buttonHover};
+  color: ${p => p.theme.colors.button};
   cursor: pointer;
-  box-shadow: 0px 0.8px 2px rgba(0, 0, 0, 0.032),
-    0px 2.7px 6.7px rgba(0, 0, 0, 0.048), 0px 12px 30px rgba(0, 0, 0, 0.08);
 
   :hover {
-    color: #9398a3;
-    background-color: #fff;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    box-shadow: 0 2.8px 2.2px red, 0 6.7px 5.3px blue, 0 12.5px 10px green,
+      0 22.3px 17.9px purple, 0 41.8px 33.4px orange, 0 100px 80px teal;
   }
 `;

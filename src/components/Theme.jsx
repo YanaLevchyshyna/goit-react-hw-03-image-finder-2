@@ -1,14 +1,14 @@
 export const theme = {
   colors: {
-    button: ' #f6f6f6',
+    button: '#f59fef',
     buttonHover: '#FFF',
     borderColor: '#1e3c72',
     primary: '#f6f6f6',
-    secondary: '#e5e7eb',
+    secondary: '#fa05f2',
     accent: '#4DA0B0',
     placeHolder: '#212529',
     label: '#bbbdbf',
-    text: '#80838a',
+    text: '#1a1919',
   },
   space: [0, 2, 4, 5, 8, 16, 32, 64, 128, 256],
 

@@ -1,9 +1,17 @@
 import { Component } from 'react';
-// import { toast } from 'react-toastify';
+import { Loader } from 'components/Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import imagesApi from 'services/imagesApi';
 import { ImageGalleryError } from '../ImageGalleryError/ImageGalleryError';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import {
+  ImgList,
+  Section,
+  Container,
+  LoadMore,
+  IoImagesSvg,
+} from './ImageGallery.styled';
+
 import PropTypes from 'prop-types';
 
 class ImageGallery extends Component {
@@ -44,13 +52,13 @@ class ImageGallery extends Component {
               `Sorry, there are no images ${nextQuery} matching your search query. Please try again.`
             );
           }
+
+          // if (this.state.error) {
+          //   this.setState({ error: null });
+          // }
         })
         .catch(error => this.setState({ error, status: 'rejected' }));
     }
-
-    // if (this.state.error) {
-    //   this.setState({ error: null });
-    // }
   }
 
   onLoadMoreClick = () => {
@@ -65,46 +73,39 @@ class ImageGallery extends Component {
       this.state;
 
     if (status === 'idle') {
-      return <p>Fill this search field</p>;
-      /* /*--> зазначаємо якщо ім'я забули передати 
-    або ж воно приводиться до фолс чи андефайнд */
+      return <IoImagesSvg />;
     }
 
     if (status === 'pending') {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     if (status === 'rejected') {
       return <ImageGalleryError message={error.message} />;
     }
-    if (images.length === 0) {
-      return (
-        <ImageGalleryError
-          message={`Sorry, there are no images matching your search query. Please try again.`}
-        />
-      );
-    }
 
     if (status === 'resolved') {
       return (
-        <>
-          <ul>
-            {images.map(image => (
-              <ImageGalleryItem key={image.id} image={image} />
-            ))}
-          </ul>
-          {currentPage <= totalPages &&
-            images.length > 0 &&
-            status !== 'pending' && (
-              <button
-                type="button"
-                onClick={this.onLoadMoreClick}
-                disabled={!isActive}
-              >
-                Load more
-              </button>
-            )}
-        </>
+        <Section>
+          <Container>
+            <ImgList>
+              {images.map(image => (
+                <ImageGalleryItem key={image.id} image={image} />
+              ))}
+            </ImgList>
+            {currentPage <= totalPages &&
+              images.length > 0 &&
+              status !== 'pending' && (
+                <LoadMore
+                  type="button"
+                  onClick={this.onLoadMoreClick}
+                  disabled={!isActive}
+                >
+                  Load more
+                </LoadMore>
+              )}
+          </Container>
+        </Section>
       );
     }
   }

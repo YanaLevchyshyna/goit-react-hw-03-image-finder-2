@@ -12,31 +12,15 @@ export const ModalBackdrop = styled.div`
 
 export const ModalContetnt = styled.div`
   position: absolute;
-  width: 90%;
+  width: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  padding-right: ${props => props.theme.space[2]}px;
-  padding-left: ${props => props.theme.space[2]}px;
-  padding-top: ${props => props.theme.space[2]}px;
-  padding-bottom: ${props => props.theme.space[2]}px;
-
-  width: 65vw;
-  height: 650px;
-
-  background-color: #fffbe6;
-
-  border-radius: 3px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const ModalImage = styled.img`
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 60vh;
   object-fit: cover;
   object-position: center;
 `;
-
-export const ModalImgDescription = styled.p``;
