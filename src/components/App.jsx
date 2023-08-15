@@ -6,7 +6,6 @@ import ImageGallery from './ImageGallery/ImageGallery';
 class App extends Component {
   state = {
     searchQuery: '',
-    showModal: false,
   };
 
   handleSubmit = searchQuery => {
