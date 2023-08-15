@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import imagesApi from 'services/imagesApi';
+import pixabay from './pixabay.png';
 import { ImageGalleryError } from '../ImageGalleryError/ImageGalleryError';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import {
@@ -9,7 +10,8 @@ import {
   Section,
   Container,
   LoadMore,
-  IoImagesSvg,
+  SiPixabaySvg,
+  PixabayPng,
 } from './ImageGallery.styled';
 
 import PropTypes from 'prop-types';
@@ -86,7 +88,12 @@ class ImageGallery extends Component {
       this.state;
 
     if (status === 'idle') {
-      return <IoImagesSvg />;
+      return (
+        <div role="alert">
+          <PixabayPng src={pixabay} alt="Error" />
+        </div>
+      );
+      // <SiPixabaySvg />;
     }
 
     if (status === 'pending') {
