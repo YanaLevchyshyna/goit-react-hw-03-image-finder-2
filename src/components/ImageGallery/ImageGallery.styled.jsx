@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { SiPixabay } from 'react-icons/si';
+import { SiPixabay } from 'react-icons/si';
 
 export const Section = styled.section`
   margin-top: 15px;
@@ -84,23 +84,23 @@ export const LoadMore = styled.button`
   }
 `;
 
-export const PixabayPng = styled.img`
+export const SiPixabaySvg = styled(SiPixabay)`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  color: white;
-  opacity: 0.3;
+  height: 50%;
+  fill: #fff;
+  opacity: 0.7;
 `;
 
-// export const SiPixabaySvg = styled(SiPixabay)`
+// export const PixabayPng = styled.img`
 //   position: absolute;
 //   top: 50%;
 //   left: 50%;
 //   transform: translate(-50%, -50%);
 //   width: 50%;
-//   height: 50%;
-//   fill: #fff;
-//   opacity: 0.7;
+//   color: white;
+//   opacity: 0.3;
 // `;

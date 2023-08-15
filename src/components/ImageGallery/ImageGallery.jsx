@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import imagesApi from 'services/imagesApi';
-import pixabay from './pixabay.png';
 import { ImageGalleryError } from '../ImageGalleryError/ImageGalleryError';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import {
@@ -10,8 +9,7 @@ import {
   Section,
   Container,
   LoadMore,
-  // SiPixabaySvg,
-  PixabayPng,
+  SiPixabaySvg,
 } from './ImageGallery.styled';
 
 import PropTypes from 'prop-types';
@@ -67,7 +65,6 @@ class ImageGallery extends Component {
               `Sorry, there are no images ${nextQuery} matching your search query. Please try again.`
             );
           }
-
           // if (this.state.error) {
           //   this.setState({ error: null });
           // }
@@ -88,12 +85,7 @@ class ImageGallery extends Component {
       this.state;
 
     if (status === 'idle') {
-      return (
-        <div role="alert">
-          <PixabayPng src={pixabay} alt="Error" />
-        </div>
-      );
-      // <SiPixabaySvg />;
+      return <SiPixabaySvg />;
     }
 
     if (status === 'pending') {
