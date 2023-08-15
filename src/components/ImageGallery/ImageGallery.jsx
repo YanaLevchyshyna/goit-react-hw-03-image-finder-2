@@ -28,6 +28,15 @@ class ImageGallery extends Component {
     totalPages: 0, // Зберігає загальну кількість сторінок
   };
 
+  // перевірка на зміну nextQuery у пропсах
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.value !== nextProps.value) {
+      return { page: 1, value: nextProps.value };
+    }
+    return null;
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { currentPage } = this.state;
     const prevQuery = prevProps.searchQuery;
