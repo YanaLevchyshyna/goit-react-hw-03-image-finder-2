@@ -10,7 +10,7 @@ import {
   Section,
   Container,
   LoadMore,
-  SiPixabaySvg,
+  // SiPixabaySvg,
   PixabayPng,
 } from './ImageGallery.styled';
 
